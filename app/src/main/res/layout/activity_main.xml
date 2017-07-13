@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.paulina.marsjanie.MainActivity"
+    android:background="@android:color/black"
     android:orientation="vertical"
-    android:background="@android:color/black">
+    tools:context="com.example.paulina.marsjanie.MainActivity">
 
     <TextView
-        android:textColor="@android:color/white"
+        android:id="@+id/txtString"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtString"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,52 +20,61 @@
 
     <TextView
         android:id="@+id/dateOfPhotoText"
-        android:textColor="@android:color/white"
-        android:text="Date of photo:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"/>
+        android:text="Date of photo:"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:visibility="invisible" />
 
     <TextView
-        android:textColor="@android:color/white"
+        android:id="@+id/dateOfPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dateOfPhoto"
-        android:textSize="25sp"/>
-
-    <ImageView
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/photoFromMars"/>
-<RelativeLayout
-    android:id="@+id/checkDifferentDate"
-    android:layout_width="250dp"
-    android:layout_height="60dp"
-    android:layout_marginLeft="80dp"
-    android:layout_marginBottom="40dp"
-    android:layout_alignParentBottom="true">
-
-    <TextView
-        android:id="@+id/checkDifferentDateLabel"
-        android:layout_centerVertical="true"
-        android:textSize="20sp"
         android:textColor="@android:color/white"
-     android:text="Check different date"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content" />
+        android:textSize="25sp" />
 
-    <ImageView
-        android:layout_width="60dp"
+    <android.support.v4.view.ViewPager
+        android:layout_below="@+id/dateOfPhoto"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/view_pager"
+        app:tabBackground="@drawable/dot_selected"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <RelativeLayout
+        android:id="@+id/checkDifferentDate"
+        android:layout_width="250dp"
         android:layout_height="60dp"
-        android:src="@drawable/calendar"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
- />
-</RelativeLayout>
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="80dp">
+
+        <TextView
+            android:id="@+id/checkDifferentDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Check different date"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/calendar" />
+    </RelativeLayout>
 </RelativeLayout>
