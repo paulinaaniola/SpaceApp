@@ -23,13 +23,10 @@ public class ServiceRequest {
 
     private String urlStart;
     private String urlEnd;
-    private String finalPhoto;
-    private boolean isPhotoDownloaded = false;
 
     public ServiceRequest() {
         urlStart = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
         urlEnd ="&api_key=lWqRwWGkHJLzY95i2w4plNwIlKFxHykD6gePltTC";
-        finalPhoto = "0";
     }
 
    public void getPhoto(final Activity activity, String date) throws IOException {

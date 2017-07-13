@@ -1,7 +1,6 @@
 package com.example.paulina.marsjanie;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.dateOfPhoto)
     TextView dateOfPhoto;
     @BindView(R.id.dateOfPhotoText)
-    TextView getDateOfPhotoText;
+    TextView dateOfPhotoText;
     @BindView(R.id.checkDifferentDate)
     RelativeLayout checkDifferentDate;
     @BindView(R.id.checkDifferentDateLabel)
@@ -35,11 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     ScreenSlidePagerAdapter mPagerAdapter;
     private static final int NUM_PAGES = 5;
-    TextView txtString;
-    String jeden = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
-    String data = "2017-5-22";
-    String trzy ="&api_key=lWqRwWGkHJLzY95i2w4plNwIlKFxHykD6gePltTC";
-    public String url;
+    public String date;
     ArrayList<String> photoLinksList = new ArrayList<String>();
 
     @Override
@@ -49,17 +44,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        photoLinksList = getIntent().getExtras().getStringArrayList("photoLink");
-        url = jeden + data +trzy;
-
-        setupButtons();
+        Bundle extras = intent.getExtras();
+        photoLinksList = extras.getStringArrayList("photoLink");
+        date = extras.getString("date");
 
         initPager();
-        txtString = (TextView) findViewById(R.id.txtString);
-    }
-
-    private void setupPhoto() {
-       // Picasso.with(this).load(photoLinksList.get(0)).into(photoMarsImageView);
+        setupButtons();
     }
 
     private void setupButtons() {
@@ -70,20 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(myIntent);
             }
         });
-    }
 
-    private void setupFonts(){
-        Typeface pangolinTF = Typeface.createFromAsset(getAssets(),"Pangolin-Regular.ttf");
-        dateOfPhoto.setTypeface(pangolinTF);
-        getDateOfPhotoText.setTypeface(pangolinTF);
-        checkDifferentDateLabel.setTypeface(pangolinTF);
+        dateOfPhoto.setText(date);
     }
-
-    public void navigateToCalendar(){
-        Intent myIntent = new Intent(MainActivity.this, CalendarActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
-
 
     private void initPager() {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), 5, photoLinksList);
@@ -106,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-//            ((GalleryPhotoFragment) galleryPhotoFragments.get(position)).downloadPhoto(getApplicationContext());
             return galleryPhotoFragments.get(position);
         }
 

@@ -40,6 +40,8 @@ public class CalendarActivity extends AppCompatActivity {
     RelativeLayout showPhotoLayout;
     @BindView(R.id.showPhotoLabel)
     TextView showPhotoLabel;
+    @BindView(R.id.select_day)
+    TextView selectDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class CalendarActivity extends AppCompatActivity {
     private void setupFonts(){
         Typeface pangolinTF = Typeface.createFromAsset(getAssets(),"Pangolin-Regular.ttf");
         showPhotoLabel.setTypeface(pangolinTF);
+        Typeface archivoTF = Typeface.createFromAsset(getAssets(),"ArchivoBlack-Regular.ttf");
+        selectDate.setTypeface(archivoTF);
     }
 
     private  void getCurrentDate(){
@@ -92,8 +96,11 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public void openActivityWithPhoto(ArrayList<String> photoLinksList) {
-        Intent myIntent = new Intent(CalendarActivity.this, MainActivity.class)
-                .putExtra("photoLink", photoLinksList);
+        Intent myIntent = new Intent(CalendarActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putStringArrayList("photoLink", photoLinksList);
+        extras.putString("date",date);
+        myIntent.putExtras(extras);
         startActivity(myIntent);
     }
 
